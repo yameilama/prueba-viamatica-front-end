@@ -2,29 +2,86 @@
     <div class="row">
         <div class="col-md-4 col-md-offset-4">
             <h2 class="text-center">Registrate</h2>
-            <form (ngSubmit)="onRegister()" class="well" #registerForm="ngForm">
+            <form [formGroup]="registerForm" (ngSubmit)="onRegister()" class="well">
+
+                <!-- Nombres -->
                 <div class="form-group">
                     <label for="nombres">Nombres:</label>
-                    <input type="text" class="form-control" id="nombres" [(ngModel)]="nombres" name="nombres" required
-                        placeholder="Ingresa tus nombres">
+                    <input type="text" class="form-control" id="nombres" formControlName="nombres"
+                        placeholder="Ingresa tus nombres" (blur)="generateEmail()">
+                    <div
+                        *ngIf="registerForm.get('nombres').errors && (registerForm.get('nombres').dirty || registerForm.get('nombres').touched)">
+                        <p *ngIf="registerForm.get('nombres').errors.required" class="error-message">Los nombres son
+                            requeridos.</p>
+                    </div>
                 </div>
+
+                <!-- Apellidos -->
                 <div class="form-group">
                     <label for="apellidos">Apellidos:</label>
-                    <input type="text" class="form-control" id="apellidos" [(ngModel)]="apellidos" name="apellidos"
-                        required placeholder="Ingresa tus apellidos">
+                    <input type="text" class="form-control" id="apellidos" formControlName="apellidos"
+                        placeholder="Ingresa tus apellidos" (blur)="generateEmail()">
+                    <div
+                        *ngIf="registerForm.get('apellidos').errors && (registerForm.get('apellidos').dirty || registerForm.get('apellidos').touched)">
+                        <p *ngIf="registerForm.get('apellidos').errors.required" class="error-message">Los apellidos son
+                            requeridos.</p>
+                    </div>
                 </div>
+
+                <!-- Identificación -->
                 <div class="form-group">
                     <label for="identificacion">Identificación:</label>
-                    <input type="text" class="form-control" id="identificacion" [(ngModel)]="identificacion"
-                        name="identificacion" required placeholder="Ingresa tu identificacion">
+                    <input type="text" class="form-control" id="identificacion" formControlName="identificacion"
+                        placeholder="Ingresa tu identificación">
+                    <div
+                        *ngIf="registerForm.get('identificacion').errors && (registerForm.get('identificacion').dirty || registerForm.get('identificacion').touched)">
+                        <p *ngIf="registerForm.get('identificacion').errors.required" class="error-message">La
+                            identificación es requerida.</p>
+                        <p *ngIf="registerForm.get('identificacion').errors.pattern" class="error-message">La
+                            identificación debe ser numérica y contener exactamente 10 dígitos.</p>
+                        <p *ngIf="registerForm.get('identificacion').errors.secuenciaInvalida" class="error-message">La
+                            identificación no puede tener 4 dígitos iguales seguidos.</p>
+                    </div>
                 </div>
+
+                <!-- Usuario -->
+                <div class="form-group">
+                    <label for="usuario">Usuario:</label>
+                    <input type="text" class="form-control" id="usuario" formControlName="usuario" placeholder="">
+                    <div *ngIf="usuario.errors && (usuario.dirty || usuario.touched)">
+                        <p *ngIf="usuario.errors.required" class="error-message">El usuario es requerido.</p>
+                        <p *ngIf="usuario.errors.minlength" class="error-message">El usuario debe tener al menos 8
+                            caracteres.</p>
+                        <p *ngIf="usuario.errors.maxlength" class="error-message">El usuario no debe exceder los 20
+                            caracteres.</p>
+                        <p *ngIf="usuario.errors.pattern" class="error-message">El usuario debe tener al menos un
+                            número, una letra mayúscula, y no contener signos.</p>
+                    </div>
+                </div>
+
+                <!-- Contraseña -->
+                <div class="form-group">
+                    <label for="contrasena">Contraseña:</label>
+                    <input type="password" class="form-control" id="contrasena" formControlName="contrasena"
+                        placeholder="Ingresa tu contraseña">
+                    <div
+                        *ngIf="registerForm.get('contrasena').errors && (registerForm.get('contrasena').dirty || registerForm.get('contrasena').touched)">
+                        <p *ngIf="registerForm.get('contrasena').errors.required" class="error-message">La contraseña es
+                            requerida.</p>
+                        <p *ngIf="registerForm.get('contrasena').errors.pattern" class="error-message">La contraseña
+                            debe tener al menos 8 caracteres, incluir una letra mayúscula, un número, y un signo, sin
+                            espacios.</p>
+                    </div>
+                </div>
+
+                <!-- Correo generado -->
                 <div class="form-group">
                     <label for="email">Correo generado:</label>
-                    <input type="text" class="form-control" id="email" [(ngModel)]="email" name="email" required
-                        placeholder="">
+                    <input type="text" class="form-control" id="email" formControlName="email" placeholder="">
                 </div>
+
                 <button type="submit" class="btn btn-primary btn-block"
-                    [disabled]="!registerForm.valid">Registrate</button>
+                    [disabled]="!registerForm.valid">Regístrate</button>
 
                 <div class="text-center" style="margin-top: 15px;">
                     <a routerLink="/login">Inicia Sesión</a>
