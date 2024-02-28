@@ -1,0 +1,35 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <h2 class="text-center">Registrate</h2>
+            <form (ngSubmit)="onRegister()" class="well" #registerForm="ngForm">
+                <div class="form-group">
+                    <label for="nombres">Nombres:</label>
+                    <input type="text" class="form-control" id="nombres" [(ngModel)]="nombres" name="nombres" required
+                        placeholder="Ingresa tus nombres">
+                </div>
+                <div class="form-group">
+                    <label for="apellidos">Apellidos:</label>
+                    <input type="text" class="form-control" id="apellidos" [(ngModel)]="apellidos" name="apellidos"
+                        required placeholder="Ingresa tus apellidos">
+                </div>
+                <div class="form-group">
+                    <label for="identificacion">Identificación:</label>
+                    <input type="text" class="form-control" id="identificacion" [(ngModel)]="identificacion"
+                        name="identificacion" required placeholder="Ingresa tu identificacion">
+                </div>
+                <div class="form-group">
+                    <label for="email">Correo generado:</label>
+                    <input type="text" class="form-control" id="email" [(ngModel)]="email" name="email" required
+                        placeholder="">
+                </div>
+                <button type="submit" class="btn btn-primary btn-block"
+                    [disabled]="!registerForm.valid">Registrate</button>
+
+                <div class="text-center" style="margin-top: 15px;">
+                    <a routerLink="/login">Inicia Sesión</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
