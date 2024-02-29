@@ -1,0 +1,36 @@
+<div>
+    <h2>Edit User</h2>
+    <form (ngSubmit)="submitForm()">
+        <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" class="form-control" id="username" name="username" [(ngModel)]="user.username" disabled>
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" class="form-control" id="email" name="email" [(ngModel)]="user.mail">
+        </div>
+        <div class="form-group">
+            <label for="firstName">First Name:</label>
+            <input type="text" class="form-control" id="firstName" name="firstName" [(ngModel)]="user.nombres">
+        </div>
+        <div class="form-group">
+            <label for="lastName">Last Name:</label>
+            <input type="text" class="form-control" id="lastName" name="lastName" [(ngModel)]="user.apellidos">
+        </div>
+        <div class="form-group">
+            <label for="sessionActive">Session Active:</label>
+            <input type="checkbox" class="form-control" id="sessionActive" name="sessionActive"
+                [(ngModel)]="user.sessionActive">
+        </div>
+        <div class="form-group">
+            <label for="identification">Identification:</label>
+            <input type="text" class="form-control" id="identification" name="identification"
+                [(ngModel)]="user.identificacion">
+        </div>
+        <div class="form-group">
+            <label for="status">Status:</label>
+            <input type="text" class="form-control" id="status" name="status" [(ngModel)]="user.status">
+        </div>
+        <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+</div>

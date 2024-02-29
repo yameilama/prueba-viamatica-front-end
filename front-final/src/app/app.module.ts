@@ -12,6 +12,9 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 import { HeaderComponent } from './header/header.component';
+import { AuthService } from './auth.service';
+import { UsersListComponent } from './users-list/users-list.component';
+import { EditUserComponent } from './users-list/edit-user/edit-user.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +24,9 @@ import { HeaderComponent } from './header/header.component';
     WelcomeComponent,
     DashboardComponent,
     UnauthorizedComponent,
-    HeaderComponent
+    HeaderComponent,
+    UsersListComponent,
+    EditUserComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +35,7 @@ import { HeaderComponent } from './header/header.component';
     AppRoutingModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

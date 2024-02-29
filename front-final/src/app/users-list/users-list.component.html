@@ -1,0 +1,28 @@
+<div class="container">
+    <h2>Users List</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Email</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Session Active</th>
+                <th>Identification</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of users" (click)="editUser(user.username)">
+                <td style="color: blue; text-decoration: underline; cursor: pointer;">{{ user.username }}</td>
+
+                <td>{{ user.mail }}</td>
+                <td>{{ user.nombres }}</td>
+                <td>{{ user.apellidos }}</td>
+                <td>{{ user.sessionActive }}</td>
+                <td>{{ user.identificacion }}</td>
+                <td>{{ user.status }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

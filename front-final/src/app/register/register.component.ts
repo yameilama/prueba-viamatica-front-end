@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators, ValidatorFn, AbstractControl, ValidationErrors } from '@angular/forms';
 
@@ -7,6 +8,8 @@ import { FormGroup, FormControl, Validators, ValidatorFn, AbstractControl, Valid
   styleUrl: './register.component.css'
 })
 export class RegisterComponent {
+  constructor(private http: HttpClient) { }
+
   registerForm = new FormGroup({
     nombres: new FormControl('', [Validators.required]),
     apellidos: new FormControl('', [Validators.required]),
@@ -15,7 +18,7 @@ export class RegisterComponent {
       Validators.pattern(/^\d{10}$/),
       this.identificacionValidator()
     ])),
-    usuario: new FormControl('', [
+    username: new FormControl('', [
       Validators.required,
       Validators.minLength(8),
       Validators.maxLength(20),
@@ -24,18 +27,39 @@ export class RegisterComponent {
     ]),
     contrasena: new FormControl('', [Validators.required,
     Validators.pattern(/^(?=.*[A-Z])(?=.*\d)(?=.*\W)[^\s]{8,}$/)]),
-    email: new FormControl({ value: '', disabled: true }, [Validators.required, Validators.email])
+    mail: new FormControl('', [Validators.required, Validators.email])
   });
 
-  get usuario() {
-    return this.registerForm.get('usuario');
+  get username() {
+    return this.registerForm.get('username');
   }
   onRegister() {
     if (this.registerForm.valid) {
-      console.log(this.registerForm.value);
 
+      const url = 'http://localhost:8080/api/registro';
+
+      const payload = {
+        ...this.registerForm.value,
+        mail: this.registerForm.get('mail').value
+      };
+
+      // Log the payload
+      console.log('Sending registration data:', payload);
+
+
+      this.http.post(url, this.registerForm.value).subscribe({
+        next: (response) => {
+          console.log('Registration successful', response);
+
+        },
+        error: (error) => {
+          console.error('Registration failed', error);
+
+        }
+      });
     }
   }
+
 
   generateEmail() {
     const nombres = this.registerForm.get('nombres').value;
@@ -44,8 +68,8 @@ export class RegisterComponent {
       const primeraLetraNombre = nombres.split(' ')[0][0];
       const primerApellido = apellidos.split(' ')[0];
       const primeraLetraSegundoApellido = apellidos.split(' ')[1] ? apellidos.split(' ')[1][0] : '';
-      const email = `${primeraLetraNombre}${primerApellido}${primeraLetraSegundoApellido}@mail.com`.toLowerCase();
-      this.registerForm.get('email').setValue(email);
+      const mail = `${primeraLetraNombre}${primerApellido}${primeraLetraSegundoApellido}@mail.com`.toLowerCase();
+      this.registerForm.get('mail').setValue(mail);
     }
   }
 

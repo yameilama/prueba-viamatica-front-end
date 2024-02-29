@@ -12,7 +12,8 @@ export class WelcomeComponent implements OnInit {
   username: string = '';
   lastLogin: any = {};
 
-  constructor(private http: HttpClient, private authService: AuthService,
+  constructor(private http: HttpClient,
+    private authService: AuthService,
     private router: Router,
   ) { }
 
@@ -39,5 +40,8 @@ export class WelcomeComponent implements OnInit {
       this.router.navigate(['/login']);
       console.error('User not logged in.');
     }
+  }
+  logout() {
+    this.authService.logout();
   }
 }

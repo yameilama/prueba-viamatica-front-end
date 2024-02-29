@@ -2,10 +2,12 @@
     <h2>Bienvenido</h2>
     <p>¡Hola, {{ username }}!</p>
 
-    <h3>Última sesión activa:</h3>
+    <h3>Última sesión activa hoy:</h3>
     <ul>
         <li>Hora de inicio: {{ lastLogin.startTime }}</li>
-        <li>Hora de finalización: {{ lastLogin.endTime }}</li>
+        <li *ngIf="lastLogin.endTime === null">No hay hora de cierre</li>
+
 
     </ul>
+    <button (click)="logout()">Cerrar sesión</button>
 </div>

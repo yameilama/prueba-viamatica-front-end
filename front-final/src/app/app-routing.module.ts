@@ -6,6 +6,7 @@ import { WelcomeComponent } from "./welcome/welcome.component";
 import { RoleGuard } from "./role-guard";
 import { DashboardComponent } from "./dashboard/dashboard.component";
 import { UnauthorizedComponent } from "./unauthorized/unauthorized.component";
+import { EditUserComponent } from "./users-list/edit-user/edit-user.component";
 
 const appRoutes: Routes = [
     { path: '', component: LoginComponent },
@@ -16,6 +17,8 @@ const appRoutes: Routes = [
     { path: 'welcome', component: WelcomeComponent, canActivate: [RoleGuard], data: { expectedRole: 'USUARIO' } },
     { path: 'dashboard', component: DashboardComponent, canActivate: [RoleGuard], data: { expectedRole: 'ADMINISTRADOR' } },
     { path: 'unauthorized', component: UnauthorizedComponent },
+    { path: 'edit-user/:username', component: EditUserComponent }
+
 ];
 @NgModule({
     imports: [RouterModule.forRoot(appRoutes)],

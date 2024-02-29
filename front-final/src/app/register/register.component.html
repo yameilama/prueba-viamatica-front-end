@@ -47,14 +47,14 @@
                 <!-- Usuario -->
                 <div class="form-group">
                     <label for="usuario">Usuario:</label>
-                    <input type="text" class="form-control" id="usuario" formControlName="usuario" placeholder="">
-                    <div *ngIf="usuario.errors && (usuario.dirty || usuario.touched)">
-                        <p *ngIf="usuario.errors.required" class="error-message">El usuario es requerido.</p>
-                        <p *ngIf="usuario.errors.minlength" class="error-message">El usuario debe tener al menos 8
+                    <input type="text" class="form-control" id="username" formControlName="username" placeholder="">
+                    <div *ngIf="username.errors && (username.dirty || username.touched)">
+                        <p *ngIf="username.errors.required" class="error-message">El usuario es requerido.</p>
+                        <p *ngIf="username.errors.minlength" class="error-message">El usuario debe tener al menos 8
                             caracteres.</p>
-                        <p *ngIf="usuario.errors.maxlength" class="error-message">El usuario no debe exceder los 20
+                        <p *ngIf="username.errors.maxlength" class="error-message">El usuario no debe exceder los 20
                             caracteres.</p>
-                        <p *ngIf="usuario.errors.pattern" class="error-message">El usuario debe tener al menos un
+                        <p *ngIf="username.errors.pattern" class="error-message">El usuario debe tener al menos un
                             número, una letra mayúscula, y no contener signos.</p>
                     </div>
                 </div>
@@ -76,8 +76,8 @@
 
                 <!-- Correo generado -->
                 <div class="form-group">
-                    <label for="email">Correo generado:</label>
-                    <input type="text" class="form-control" id="email" formControlName="email" placeholder="">
+                    <label for="mail">Correo generado:</label>
+                    <input type="text" class="form-control" id="mail" formControlName="mail" placeholder="">
                 </div>
 
                 <button type="submit" class="btn btn-primary btn-block"
